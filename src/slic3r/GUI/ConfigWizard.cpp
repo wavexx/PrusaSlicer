@@ -1008,8 +1008,8 @@ PageCustom::PageCustom(ConfigWizard *parent)
 
 PageUpdate::PageUpdate(ConfigWizard *parent)
     : ConfigWizardPage(parent, _(L("Automatic updates")), _(L("Updates")))
-    , version_check(true)
-    , preset_update(true)
+    , version_check(false)
+    , preset_update(false)
 {
     const AppConfig *app_config = wxGetApp().app_config;
     auto boldfont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);

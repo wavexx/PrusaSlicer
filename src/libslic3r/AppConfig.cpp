@@ -53,9 +53,9 @@ void AppConfig::set_defaults()
         set("show_incompatible_presets", "0");
 
     if (get("version_check").empty())
-        set("version_check", "1");
+        set("version_check", "0");
     if (get("preset_update").empty())
-        set("preset_update", "1");
+        set("preset_update", "0");
 
     if (get("export_sources_full_pathnames").empty())
         set("export_sources_full_pathnames", "0");
