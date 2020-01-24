@@ -79,10 +79,10 @@ void AppConfig::set_defaults()
 		set("remember_output_path_removable", "1");
 
     if (get("use_custom_toolbar_size").empty())
-        set("use_custom_toolbar_size", "0");
+        set("use_custom_toolbar_size", "1");
 
     if (get("custom_toolbar_size").empty())
-        set("custom_toolbar_size", "100");
+        set("custom_toolbar_size", "50");
 
     if (get("auto_toolbar_size").empty())
         set("auto_toolbar_size", "100");
