@@ -104,6 +104,9 @@ void AppConfig::set_defaults()
     if (get("show_splash_screen").empty())
         set("show_splash_screen", "1");
 
+    if (get("view_mode").empty())
+        set("view_mode", "expert");
+
     // Remove legacy window positions/sizes
     erase("", "main_frame_maximized");
     erase("", "main_frame_pos");

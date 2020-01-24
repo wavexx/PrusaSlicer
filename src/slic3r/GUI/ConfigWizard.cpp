@@ -1081,7 +1081,7 @@ PageMode::PageMode(ConfigWizard *parent)
 
 void PageMode::on_activate()
 {
-    std::string mode { "simple" };
+    std::string mode;
     wxGetApp().app_config->get("", "view_mode", mode);
 
     if (mode == "advanced") { radio_advanced->SetValue(true); }
