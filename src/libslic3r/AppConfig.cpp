@@ -58,7 +58,7 @@ void AppConfig::set_defaults()
         set("preset_update", "0");
 
     if (get("export_sources_full_pathnames").empty())
-        set("export_sources_full_pathnames", "0");
+        set("export_sources_full_pathnames", "1");
 
     // remove old 'use_legacy_opengl' parameter from this config, if present
     if (!get("use_legacy_opengl").empty())
