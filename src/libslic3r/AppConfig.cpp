@@ -88,7 +88,7 @@ void AppConfig::set_defaults()
         set("auto_toolbar_size", "100");
 
     if (get("use_perspective_camera").empty())
-        set("use_perspective_camera", "1");
+        set("use_perspective_camera", "0");
 
     if (get("use_free_camera").empty())
         set("use_free_camera", "0");
