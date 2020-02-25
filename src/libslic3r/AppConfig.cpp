@@ -50,7 +50,7 @@ void AppConfig::set_defaults()
     if (get("no_defaults").empty())
         set("no_defaults", "1");
     if (get("show_incompatible_presets").empty())
-        set("show_incompatible_presets", "0");
+        set("show_incompatible_presets", "1");
 
     if (get("version_check").empty())
         set("version_check", "0");
