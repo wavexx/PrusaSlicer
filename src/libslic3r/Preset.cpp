@@ -459,8 +459,8 @@ const std::vector<std::string>& Preset::printer_options()
     if (s_opts.empty()) {
         s_opts = {
             "printer_technology",
-            "bed_shape", "bed_custom_texture", "bed_custom_model", "z_offset", "gcode_flavor", "use_relative_e_distances", "serial_port", "serial_speed",
-            "use_firmware_retraction", "use_volumetric_e", "variable_layer_height",
+            "bed_shape", "bed_custom_texture", "bed_custom_model", "bed_temp_offset", "z_offset", "gcode_flavor", "use_relative_e_distances",
+            "serial_port", "serial_speed", "use_firmware_retraction", "use_volumetric_e", "variable_layer_height",
             "host_type", "print_host", "printhost_apikey", "printhost_cafile",
             "single_extruder_multi_material", "start_gcode", "end_gcode", "before_layer_gcode", "layer_gcode", "toolchange_gcode",
             "color_change_gcode", "pause_print_gcode", "template_custom_gcode",

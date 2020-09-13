@@ -2060,6 +2060,7 @@ void TabPrinter::build_fff()
 
         optgroup->append_single_option_line("max_print_height");
         optgroup->append_single_option_line("z_offset");
+        optgroup->append_single_option_line("bed_temp_offset");
 
         optgroup = page->new_optgroup(L("Capabilities"));
         ConfigOptionDef def;

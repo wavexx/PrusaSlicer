@@ -812,6 +812,7 @@ public:
     ConfigOptionBool                avoid_crossing_perimeters;
     ConfigOptionPoints              bed_shape;
     ConfigOptionInts                bed_temperature;
+    ConfigOptionFloat               bed_temp_offset;
     ConfigOptionFloat               bridge_acceleration;
     ConfigOptionInts                bridge_fan_speed;
     ConfigOptionFloat               brim_width;
@@ -885,6 +886,7 @@ protected:
         OPT_PTR(avoid_crossing_perimeters);
         OPT_PTR(bed_shape);
         OPT_PTR(bed_temperature);
+        OPT_PTR(bed_temp_offset);
         OPT_PTR(bridge_acceleration);
         OPT_PTR(bridge_fan_speed);
         OPT_PTR(brim_width);

@@ -188,6 +188,15 @@ void PrintConfigDef::init_fff_params()
     def->max = 300;
     def->set_default_value(new ConfigOptionInts { 0 });
 
+    def = this->add("bed_temp_offset", coFloat);
+    def->label = L("Bed temperature offset");
+    def->tooltip = L("This value will be added to bed temperatures (first layer and others) "
+                     "in the output G-code. It is used to compensate for temperature differences "
+                     "among different build-plates/printers.");
+    def->sidetext = L("°C");
+    def->mode = comAdvanced;
+    def->set_default_value(new ConfigOptionFloat(0.));
+
     def = this->add("before_layer_gcode", coString);
     def->label = L("Before layer change G-code");
     def->tooltip = L("This custom code is inserted at every layer change, right before the Z move. "
