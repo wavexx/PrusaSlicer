@@ -1211,7 +1211,7 @@ void MainFrame::init_menubar()
             [this](wxCommandEvent&) { m_printhost_queue_dlg->Show(); }, "upload_queue", nullptr, [this]() {return true; }, this);
         
         windowMenu->AppendSeparator();
-        append_menu_item(windowMenu, wxID_ANY, _(L("Open new instance")) + "\tCtrl+I", _(L("Open a new PrusaSlicer instance")),
+        append_menu_item(windowMenu, wxID_ANY, _(L("Open new instance")) + "\tCtrl+Shift+I", _(L("Open a new PrusaSlicer instance")),
 			[this](wxCommandEvent&) { start_new_slicer(); }, "", nullptr);
     }
 
