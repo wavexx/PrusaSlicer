@@ -1929,6 +1929,7 @@ Plater::priv::priv(Plater *q, MainFrame *main_frame)
     preview->get_wxglcanvas()->Bind(EVT_GLCANVAS_QUESTION_MARK, [this](SimpleEvent&) { wxGetApp().keyboard_shortcuts(); });
     preview->get_wxglcanvas()->Bind(EVT_GLCANVAS_UPDATE_BED_SHAPE, [q](SimpleEvent&) { q->set_bed_shape(); });
     preview->get_wxglcanvas()->Bind(EVT_GLCANVAS_TAB, [this](SimpleEvent&) { select_next_view_3D(); });
+    preview->get_wxglcanvas()->Bind(EVT_GLCANVAS_COLLAPSE_SIDEBAR, [this](SimpleEvent&) { this->q->collapse_sidebar(!this->q->is_sidebar_collapsed());  });
 #if ENABLE_GCODE_VIEWER
     preview->get_wxglcanvas()->Bind(EVT_GLCANVAS_MOVE_LAYERS_SLIDER, [this](wxKeyEvent& evt) { preview->move_layers_slider(evt); });
     preview->get_wxglcanvas()->Bind(EVT_GLCANVAS_EDIT_COLOR_CHANGE, [this](wxKeyEvent& evt) { preview->edit_layers_slider(evt); });
@@ -4035,23 +4036,26 @@ bool Plater::priv::init_collapse_toolbar()
 
     GLToolbarItem::Data item;
 
-    item.name = "collapse_sidebar";
-    item.icon_filename = "collapse.svg";
-    item.tooltip = wxGetApp().plater()->is_sidebar_collapsed() ? _utf8(L("Expand right panel")) : _utf8(L("Collapse right panel"));
-    item.sprite_id = 0;
-    item.left.action_callback = [this, item]() {
-        std::string new_tooltip = wxGetApp().plater()->is_sidebar_collapsed() ?
-            _utf8(L("Collapse right panel")) : _utf8(L("Expand right panel"));
-
+    auto item_tooltip_update = [this, item](bool flip) {
+        std::string new_tooltip = wxGetApp().plater()->is_sidebar_collapsed() ^ flip?
+            _utf8(L("Expand sidebar")) : _utf8(L("Collapse sidebar"));
+        new_tooltip += " [Shift+Tab]";
         int id = collapse_toolbar.get_item_id("collapse_sidebar");
         collapse_toolbar.set_tooltip(id, new_tooltip);
+    };
 
+    item.name = "collapse_sidebar";
+    item.icon_filename = "collapse.svg";
+    item.sprite_id = 0;
+    item.left.action_callback = [this, item_tooltip_update]() {
+        item_tooltip_update(true);
         wxGetApp().plater()->collapse_sidebar(!wxGetApp().plater()->is_sidebar_collapsed());
     };
 
     if (!collapse_toolbar.add_item(item))
         return false;
 
+    item_tooltip_update(false);
     return true;
 }
 
