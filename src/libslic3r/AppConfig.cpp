@@ -50,15 +50,15 @@ void AppConfig::set_defaults()
     if (get("no_defaults").empty())
         set("no_defaults", "1");
     if (get("show_incompatible_presets").empty())
-        set("show_incompatible_presets", "0");
+        set("show_incompatible_presets", "1");
 
     if (get("version_check").empty())
-        set("version_check", "1");
+        set("version_check", "0");
     if (get("preset_update").empty())
-        set("preset_update", "1");
+        set("preset_update", "0");
 
     if (get("export_sources_full_pathnames").empty())
-        set("export_sources_full_pathnames", "0");
+        set("export_sources_full_pathnames", "1");
 
     // remove old 'use_legacy_opengl' parameter from this config, if present
     if (!get("use_legacy_opengl").empty())
@@ -79,16 +79,16 @@ void AppConfig::set_defaults()
 		set("remember_output_path_removable", "1");
 
     if (get("use_custom_toolbar_size").empty())
-        set("use_custom_toolbar_size", "0");
+        set("use_custom_toolbar_size", "1");
 
     if (get("custom_toolbar_size").empty())
-        set("custom_toolbar_size", "100");
+        set("custom_toolbar_size", "50");
 
     if (get("auto_toolbar_size").empty())
         set("auto_toolbar_size", "100");
 
     if (get("use_perspective_camera").empty())
-        set("use_perspective_camera", "1");
+        set("use_perspective_camera", "0");
 
     if (get("use_free_camera").empty())
         set("use_free_camera", "0");
@@ -103,6 +103,9 @@ void AppConfig::set_defaults()
 
     if (get("show_splash_screen").empty())
         set("show_splash_screen", "1");
+
+    if (get("view_mode").empty())
+        set("view_mode", "expert");
 
     // Remove legacy window positions/sizes
     erase("", "main_frame_maximized");

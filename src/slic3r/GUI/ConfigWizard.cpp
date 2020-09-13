@@ -1008,8 +1008,8 @@ PageCustom::PageCustom(ConfigWizard *parent)
 
 PageUpdate::PageUpdate(ConfigWizard *parent)
     : ConfigWizardPage(parent, _(L("Automatic updates")), _(L("Updates")))
-    , version_check(true)
-    , preset_update(true)
+    , version_check(false)
+    , preset_update(false)
 {
     const AppConfig *app_config = wxGetApp().app_config;
     auto boldfont = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
@@ -1045,7 +1045,7 @@ PageUpdate::PageUpdate(ConfigWizard *parent)
 
 PageReloadFromDisk::PageReloadFromDisk(ConfigWizard* parent)
     : ConfigWizardPage(parent, _(L("Reload from disk")), _(L("Reload from disk")))
-    , full_pathnames(false)
+    , full_pathnames(true)
 {
     auto* box_pathnames = new wxCheckBox(this, wxID_ANY, _(L("Export full pathnames of models and parts sources into 3mf and amf files")));
     box_pathnames->SetValue(wxGetApp().app_config->get("export_sources_full_pathnames") == "1");
@@ -1081,7 +1081,7 @@ PageMode::PageMode(ConfigWizard *parent)
 
 void PageMode::on_activate()
 {
-    std::string mode { "simple" };
+    std::string mode;
     wxGetApp().app_config->get("", "view_mode", mode);
 
     if (mode == "advanced") { radio_advanced->SetValue(true); }
