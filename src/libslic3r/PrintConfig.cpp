@@ -423,10 +423,12 @@ void PrintConfigDef::init_fff_params()
 
     def = this->add("duplicate_distance", coFloat);
     def->label = L("Distance between copies");
+    def->category = L("Advanced");
     def->tooltip = L("Distance used for the auto-arrange feature of the plater.");
     def->sidetext = L("mm");
     def->aliases = { "multiply_distance" };
     def->min = 0;
+    def->mode = comExpert;
     def->set_default_value(new ConfigOptionFloat(6));
 
     def = this->add("end_gcode", coString);
