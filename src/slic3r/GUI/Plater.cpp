@@ -1165,15 +1165,13 @@ void Sidebar::update_sliced_info_sizer()
                         wxString::Format("%.2f", ps.total_cost);
             p->sliced_info->SetTextAndShow(siCost, info_text,      new_label);
 
-#if ENABLE_GCODE_VIEWER
-            // hide the estimate time
-            p->sliced_info->SetTextAndShow(siEstimatedTime, "N/A");
-#else
             if (ps.estimated_normal_print_time == "N/A" && ps.estimated_silent_print_time == "N/A")
                 p->sliced_info->SetTextAndShow(siEstimatedTime, "N/A");
             else {
                 new_label = _L("Estimated printing time") + ":";
                 info_text = "";
+
+#if !ENABLE_GCODE_VIEWER
                 wxString str_color = _L("Color");
                 wxString str_pause = _L("Pause");
 
@@ -1198,11 +1196,14 @@ void Sidebar::update_sliced_info_sizer()
                             info_text += format_wxstr("\n%1%", times[i].second);
                         }
                     };
+#endif
 
                 if (ps.estimated_normal_print_time != "N/A") {
                     new_label += format_wxstr("\n   - %1%", _L("normal mode"));
                     info_text += format_wxstr("\n%1%", ps.estimated_normal_print_time);
+#if !ENABLE_GCODE_VIEWER
                     fill_labels(ps.estimated_normal_custom_gcode_print_times, new_label, info_text);
+#endif
 
 					// uncomment next line to not disappear slicing finished notif when colapsing sidebar before time estimate
 					//if (p->plater->is_sidebar_collapsed())
@@ -1213,11 +1214,12 @@ void Sidebar::update_sliced_info_sizer()
                 if (ps.estimated_silent_print_time != "N/A") {
                     new_label += format_wxstr("\n   - %1%", _L("stealth mode"));
                     info_text += format_wxstr("\n%1%", ps.estimated_silent_print_time);
+#if !ENABLE_GCODE_VIEWER
                     fill_labels(ps.estimated_silent_custom_gcode_print_times, new_label, info_text);
+#endif
                 }
                 p->sliced_info->SetTextAndShow(siEstimatedTime, info_text, new_label);
             }
-#endif // !ENABLE_GCODE_VIEWER
 
             // if there is a wipe tower, insert number of toolchanges info into the array:
             p->sliced_info->SetTextAndShow(siWTNumbetOfToolchanges, is_wipe_tower ? wxString::Format("%.d", ps.total_toolchanges) : "N/A");
